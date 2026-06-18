@@ -4,3 +4,8 @@ supabase
 python-dotenv
 sqlalchemy
 psycopg2-binary
+pydantic[email]
+pydantic-settings
+firecrawl-py
+httpx
+pymupdf
