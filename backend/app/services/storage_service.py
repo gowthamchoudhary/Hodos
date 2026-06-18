@@ -17,6 +17,10 @@ class ProfileNotFoundError(Exception):
     pass
 
 
+class ProfileForbiddenError(Exception):
+    pass
+
+
 class StorageUploadError(Exception):
     pass
 
@@ -28,6 +32,7 @@ async def upload_resume(
     db: Session,
     profile_id: int,
     file: UploadFile,
+    user_id: str,
 ) -> str:
     if file.content_type != PDF_MIME_TYPE:
         raise InvalidFileTypeError("Only PDF files are allowed.")
@@ -35,13 +40,15 @@ async def upload_resume(
     profile = db.get(Profile, profile_id)
     if profile is None:
         raise ProfileNotFoundError
+    if profile.user_id != user_id:
+        raise ProfileForbiddenError
 
     contents = await file.read()
     if not contents:
         raise InvalidFileTypeError("Uploaded PDF file is empty.")
 
     filename = Path(file.filename or "resume.pdf").name
-    storage_path = f"profiles/{profile_id}/resumes/{uuid4()}-{filename}"
+    storage_path = f"profiles/{user_id}/{profile_id}/resumes/{uuid4()}-{filename}"
 
     try:
         await asyncio.to_thread(

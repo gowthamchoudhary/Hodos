@@ -6,6 +6,7 @@ from app.db.database import Base
 class Profile(Base):
   __tablename__ = "profiles"
   id = Column(Integer,primary_key=True,index=True)
+  user_id = Column(String,nullable=False,index=True)
   name = Column(String,nullable=False)
   role = Column(String,nullable=False,index=True)
 

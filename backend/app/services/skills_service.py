@@ -9,6 +9,10 @@ class ProfileNotFoundError(Exception):
     pass
 
 
+class ProfileForbiddenError(Exception):
+    pass
+
+
 class SkillAssignmentExistsError(Exception):
     pass
 
@@ -21,10 +25,13 @@ def add_skill_to_profile(
     db: Session,
     profile_id: int,
     skill_data: SkillCreate,
+    user_id: str,
 ) -> Skill:
     profile = db.get(Profile, profile_id)
     if profile is None:
         raise ProfileNotFoundError
+    if profile.user_id != user_id:
+        raise ProfileForbiddenError
 
     skill_name = _normalize_skill_name(skill_data.name)
     skill = db.query(Skill).filter(Skill.name.ilike(skill_name)).first()
@@ -52,10 +59,12 @@ def add_skill_to_profile(
     return skill
 
 
-def get_profile_skills(db: Session, profile_id: int) -> list[Skill]:
+def get_profile_skills(db: Session, profile_id: int, user_id: str) -> list[Skill]:
     profile = db.get(Profile, profile_id)
     if profile is None:
         raise ProfileNotFoundError
+    if profile.user_id != user_id:
+        raise ProfileForbiddenError
 
     return (
         db.query(Skill)
@@ -70,10 +79,13 @@ def remove_skill_from_profile(
     db: Session,
     profile_id: int,
     skill_id: int,
+    user_id: str,
 ) -> None:
     profile = db.get(Profile, profile_id)
     if profile is None:
         raise ProfileNotFoundError
+    if profile.user_id != user_id:
+        raise ProfileForbiddenError
 
     assignment = db.get(
         ProfileSkill,
