@@ -6,6 +6,7 @@ from app.models.profile import Profile, ProfileSkill, Skill
 
 def search_profiles(
     db: Session,
+    user_id: str,
     role: str | None = None,
     company: str | None = None,
     experience_type: str | None = None,
@@ -13,7 +14,7 @@ def search_profiles(
     limit: int = 20,
     offset: int = 0,
 ) -> tuple[list[Profile], int]:
-    query = db.query(Profile)
+    query = db.query(Profile).filter(Profile.user_id == user_id)
 
     if skill:
         query = (
