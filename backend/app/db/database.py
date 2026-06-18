@@ -1,4 +1,4 @@
-from app.core.congif import supabase,DATABASE_URL
+from app.core.config import supabase,DATABASE_URL
 from sqlalchemy.orm import sessionmaker,declarative_base
 from sqlalchemy import create_engine
 
