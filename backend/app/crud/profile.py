@@ -4,8 +4,8 @@ from app.models.profile import Profile
 from app.schemas.profile import ProfileCreate, ProfileUpdate
 
 
-def create_profile(db: Session, profile_data: ProfileCreate) -> Profile:
-    profile = Profile(**profile_data.model_dump())
+def create_profile(db: Session, profile_data: ProfileCreate, user_id: str) -> Profile:
+    profile = Profile(**profile_data.model_dump(), user_id=user_id)
     db.add(profile)
     db.commit()
     db.refresh(profile)
@@ -16,8 +16,13 @@ def get_profile(db: Session, profile_id: int) -> Profile | None:
     return db.get(Profile, profile_id)
 
 
-def get_profiles(db: Session) -> list[Profile]:
-    return db.query(Profile).order_by(Profile.created_at.desc()).all()
+def get_profiles(db: Session, user_id: str) -> list[Profile]:
+    return (
+        db.query(Profile)
+        .filter(Profile.user_id == user_id)
+        .order_by(Profile.created_at.desc())
+        .all()
+    )
 
 
 def update_profile(
