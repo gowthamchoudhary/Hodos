@@ -10,3 +10,6 @@ pydantic-settings
 firecrawl-py
 httpx
 pymupdf
+pyjwt
+requests
+cryptography
