@@ -31,5 +31,6 @@ def clean_database_url(url: str) -> str:
 DATABASE_URL:str = clean_database_url(os.getenv("DATABASE_URL", ""))
 SUPABASE_URL:str = os.getenv("SUPABASE_URL","")
 SUPABASE_KEY:str = os.getenv("SUPABASE_KEY")
+SUPABASE_STORAGE_BUCKET: str = os.getenv("SUPABASE_STORAGE_BUCKET", "resumes")
 
 supabase = create_client(SUPABASE_URL,SUPABASE_KEY)
