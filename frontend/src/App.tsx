@@ -1,26 +1,9 @@
+import { Navbar } from "./components/Navbar";
+
 export function App() {
   return (
     <main className="landing-page">
-      <nav className="navbar" aria-label="Main navigation">
-        <a className="brand" href="/">
-          Hodos
-        </a>
-
-        <div className="nav-links">
-          <a href="#skills">Skills</a>
-          <a href="#paths">Paths</a>
-          <a href="#portfolios">Portfolios</a>
-        </div>
-
-        <div className="nav-actions">
-          <a className="login-link" href="#login">
-            Login
-          </a>
-          <a className="discover-button" href="#discover">
-            Discover
-          </a>
-        </div>
-      </nav>
+      <Navbar />
 
       <section className="hero-section">
         <div className="hero-copy">
