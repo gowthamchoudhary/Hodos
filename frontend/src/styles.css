@@ -1,0 +1,201 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap");
+@import "tailwindcss";
+
+:root {
+  color: #181818;
+  background: #ffffff;
+  font-family: "Poppins", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  background: #ffffff;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.landing-page {
+  min-height: 100vh;
+  overflow-x: hidden;
+  padding: 20px clamp(16px, 4vw, 56px);
+}
+
+.navbar {
+  align-items: center;
+  background: #fafafa;
+  border: 1px solid #ffffff;
+  border-radius: 18px;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.95),
+    inset 0 -1px 0 rgba(232, 232, 232, 0.75),
+    0 18px 45px rgba(24, 24, 24, 0.08);
+  display: grid;
+  gap: 20px;
+  grid-template-columns: 1fr auto 1fr;
+  min-height: 72px;
+  padding: 0 18px 0 26px;
+  position: sticky;
+  top: 20px;
+  z-index: 10;
+}
+
+.brand {
+  font-size: 1.45rem;
+  font-weight: 800;
+  letter-spacing: 0;
+}
+
+.nav-links {
+  align-items: center;
+  display: flex;
+  gap: clamp(18px, 3vw, 42px);
+  justify-content: center;
+}
+
+.nav-links a,
+.login-link {
+  color: #343434;
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+.nav-links a:hover,
+.login-link:hover {
+  color: #000000;
+}
+
+.nav-actions {
+  align-items: center;
+  display: flex;
+  gap: 16px;
+  justify-content: flex-end;
+}
+
+.discover-button {
+  align-items: center;
+  background: #181818;
+  border-radius: 999px;
+  color: #ffffff;
+  display: inline-flex;
+  font-size: 0.92rem;
+  font-weight: 600;
+  min-height: 44px;
+  padding: 0 22px;
+  box-shadow: 0 10px 24px rgba(24, 24, 24, 0.16);
+}
+
+.hero-section {
+  align-items: center;
+  background-image: url("../assets/clouds background.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: 0;
+  display: flex;
+  margin: -92px calc(50% - 50vw) 0;
+  min-height: 100vh;
+  min-height: 100svh;
+  overflow: hidden;
+  padding: calc(clamp(72px, 12vw, 150px) + 92px) clamp(16px, 4vw, 56px) 80px;
+  width: 100vw;
+}
+
+.hero-copy {
+  max-width: 850px;
+}
+
+.hero-kicker {
+  color: #5f5f5f;
+  font-size: 0.92rem;
+  font-weight: 600;
+  letter-spacing: 0;
+  margin: 0 0 18px;
+  text-transform: uppercase;
+}
+
+.hero-copy h1 {
+  color: #111111;
+  font-size: clamp(3rem, 7vw, 6.7rem);
+  font-weight: 800;
+  letter-spacing: 0;
+  line-height: 0.98;
+  margin: 0;
+  max-width: 980px;
+}
+
+.hero-text {
+  color: #5c5c5c;
+  font-size: clamp(1rem, 1.7vw, 1.28rem);
+  line-height: 1.7;
+  margin: 28px 0 0;
+  max-width: 620px;
+}
+
+@media (max-width: 820px) {
+  .navbar {
+    grid-template-columns: 1fr auto;
+    min-height: auto;
+    padding: 16px;
+  }
+
+  .nav-links {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    justify-content: flex-start;
+    order: 3;
+    overflow-x: auto;
+    padding-top: 4px;
+  }
+}
+
+@media (max-width: 560px) {
+  .landing-page {
+    padding: 14px;
+  }
+
+  .navbar {
+    border-radius: 14px;
+    top: 14px;
+  }
+
+  .brand {
+    font-size: 1.25rem;
+  }
+
+  .nav-actions {
+    gap: 10px;
+  }
+
+  .login-link,
+  .nav-links a {
+    font-size: 0.86rem;
+  }
+
+  .discover-button {
+    min-height: 38px;
+    padding: 0 15px;
+  }
+
+  .hero-section {
+    margin-top: -80px;
+    min-height: 100vh;
+    min-height: 100svh;
+    padding-top: calc(72px + 80px);
+  }
+}
