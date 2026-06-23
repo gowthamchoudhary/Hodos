@@ -47,12 +47,12 @@ function SceneCard({
     >
       <motion.div
         className="hero-card-float"
-        animate={{ y: [-3, 3, -3] }}
+        animate={{ y: [-1, 1, -1] }}
         transition={{ duration, ease: "easeInOut", repeat: Infinity }}
       >
         <motion.article
           className={`hero-card-material ${className}`}
-          whileHover={{ y: -20, scale: 1.08, zIndex: 60 }}
+          whileHover={{ y: -4, scale: 1.015, zIndex: 60 }}
           transition={{ duration: 0.22 }}
         >
           {children}
@@ -94,7 +94,7 @@ function PortfolioCard() {
       <div className="absolute bottom-5 left-5 right-5 flex items-center gap-3">
         {["React", "Next", "TW"].map((icon) => (
           <div
-            className="grid h-9 w-9 place-items-center rounded-xl bg-white text-[11px] font-bold text-slate-900 shadow-[0_10px_22px_rgba(0,83,180,0.13)]"
+            className="grid h-9 w-9 place-items-center rounded-xl bg-white text-[11px] font-bold text-slate-900"
             key={icon}
           >
             {icon}
@@ -208,7 +208,7 @@ function ProjectCard() {
       <div className="absolute bottom-5 left-5 flex gap-3">
         {["API", "Py", "SQL"].map((item) => (
           <div
-            className="grid h-11 w-11 place-items-center rounded-2xl bg-white text-xs font-extrabold text-slate-900 shadow-[0_12px_28px_rgba(0,83,180,0.15)]"
+            className="grid h-11 w-11 place-items-center rounded-2xl bg-white text-xs font-extrabold text-slate-900"
             key={item}
           >
             {item}

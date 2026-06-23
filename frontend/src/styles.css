@@ -153,13 +153,12 @@ a {
 }
 
 .hero-card-material {
-  background:
-    linear-gradient(135deg, rgba(255, 255, 255, 0.42), rgba(255, 255, 255, 0) 28%),
-    linear-gradient(180deg, rgba(255, 255, 255, 1), rgba(248, 250, 255, 0.95));
-  border: 1px solid rgba(255, 255, 255, 0.72);
+  background: #fbfdff;
+  border: 1px solid rgba(255, 255, 255, 0.86);
   box-shadow:
-    0 40px 120px rgba(0, 0, 0, 0.15),
-    0 80px 160px rgba(0, 0, 0, 0.08);
+    inset 0 1px 0 rgba(255, 255, 255, 0.96),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.54),
+    0 16px 34px rgba(42, 92, 150, 0.08);
   overflow: hidden;
   position: relative;
   transform-style: preserve-3d;
@@ -174,17 +173,11 @@ a {
 }
 
 .hero-card-material::before {
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0));
-  height: 42%;
-  inset: 0 0 auto;
+  display: none;
 }
 
 .hero-card-material::after {
-  background: linear-gradient(90deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0));
-  bottom: 0;
-  left: 0;
-  top: 0;
-  width: 38%;
+  display: none;
 }
 
 .hero-card-material.hero-card-dark {
@@ -192,6 +185,26 @@ a {
     radial-gradient(circle at 78% 4%, rgba(42, 125, 255, 0.3), rgba(42, 125, 255, 0) 36%),
     linear-gradient(145deg, #05070d, #101725 55%, #05070d);
   border-color: rgba(255, 255, 255, 0.12);
+  box-shadow: none;
+}
+
+.hero-card-material.hero-card-dark::before,
+.hero-card-material.hero-card-dark::after {
+  display: block;
+}
+
+.hero-card-material.hero-card-dark::before {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0));
+  height: 42%;
+  inset: 0 0 auto;
+}
+
+.hero-card-material.hero-card-dark::after {
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0));
+  bottom: 0;
+  left: 0;
+  top: 0;
+  width: 38%;
 }
 
 .hero-card-reflection {
@@ -202,7 +215,7 @@ a {
   filter: blur(14px);
   left: 0;
   mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.6), transparent);
-  opacity: 0.12;
+  opacity: 0;
   overflow: hidden;
   pointer-events: none;
   position: absolute;
