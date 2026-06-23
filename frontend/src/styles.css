@@ -33,7 +33,7 @@ a {
 .landing-page {
   min-height: 100vh;
   overflow-x: hidden;
-  padding: 20px clamp(16px, 4vw, 56px);
+  padding: 20px clamp(16px, 4vw, 56px) 0;
 }
 
 .navbar {
@@ -216,44 +216,6 @@ a {
   opacity: 0.17;
 }
 
-.hero-card-cloud-veil {
-  bottom: -3.5rem;
-  height: 10rem;
-  left: 50%;
-  overflow: hidden;
-  pointer-events: none;
-  position: absolute;
-  transform: translateX(-50%);
-  width: min(100vw, 100rem);
-  z-index: 40;
-}
-
-.hero-card-cloud {
-  bottom: -5.5rem;
-  filter: blur(8px);
-  opacity: 0.78;
-  position: absolute;
-  user-select: none;
-}
-
-.hero-card-cloud-left {
-  left: max(-12vw, -170px);
-  width: clamp(360px, 38vw, 620px);
-}
-
-.hero-card-cloud-center {
-  left: 50%;
-  opacity: 0.7;
-  transform: translateX(-50%) scale(1.12);
-  width: clamp(460px, 48vw, 760px);
-}
-
-.hero-card-cloud-right {
-  right: max(-12vw, -170px);
-  transform: scaleX(-1);
-  width: clamp(380px, 40vw, 660px);
-}
-
 @media (min-width: 1024px) {
   .hero-card-showcase {
     margin-top: clamp(4.5rem, 6vw, 6.5rem);
@@ -316,7 +278,7 @@ a {
 
 @media (max-width: 560px) {
   .landing-page {
-    padding: 14px;
+    padding: 14px 14px 0;
   }
 
   .navbar {

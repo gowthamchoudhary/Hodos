@@ -1,7 +1,5 @@
 import { motion } from "framer-motion";
 import type { CSSProperties, ReactNode } from "react";
-import largeClouds from "../../assets/large_clouds.png";
-import mediumClouds from "../../assets/medium_clouds.png";
 import profileBoy from "../../assets/profile_boy.png";
 
 const cardEase = [0.22, 1, 0.36, 1] as const;
@@ -363,12 +361,6 @@ export function HeroCards() {
         <SkillsCard />
         <InternshipCard />
         <AnalyticsCard />
-      </div>
-
-      <div className="hero-card-cloud-veil" aria-hidden="true">
-        <img className="hero-card-cloud hero-card-cloud-left" src={largeClouds} alt="" />
-        <img className="hero-card-cloud hero-card-cloud-center" src={mediumClouds} alt="" />
-        <img className="hero-card-cloud hero-card-cloud-right" src={largeClouds} alt="" />
       </div>
     </motion.div>
   );
