@@ -33,21 +33,21 @@ export function Navbar() {
     >
       <nav
         aria-label="Main navigation"
-        className={`mx-auto flex h-16 max-w-7xl items-center justify-between rounded-2xl px-4 transition-all duration-300 sm:px-5 lg:px-6 ${
+        className={`mx-auto flex h-16 max-w-7xl items-center justify-between rounded-2xl px-4 text-white transition-all duration-300 sm:px-5 lg:px-6 ${
           isScrolled
             ? "border border-white/15 bg-white/10 shadow-[0_18px_55px_rgba(0,38,120,0.18)] backdrop-blur-xl"
             : "border border-transparent bg-transparent"
         }`}
       >
         <a className="flex items-center gap-2.5" href="/" aria-label="Hodos home">
-          <img className="h-8 w-8 object-contain" src={logoFire} alt="" />
+          <img className="h-10 w-10 object-contain" src={logoFire} alt="" />
           <span className="text-xl font-bold tracking-normal text-white">Hodos</span>
         </a>
 
         <div className="hidden items-center gap-9 lg:flex">
           {navLinks.map((link) => (
             <motion.a
-              className="text-sm font-medium text-white/90 transition-colors duration-200 hover:text-white"
+              className="text-sm font-medium text-white transition-opacity duration-200 hover:opacity-75"
               href={link.href}
               key={link.label}
               whileHover={{ y: -1 }}
@@ -60,7 +60,7 @@ export function Navbar() {
 
         <div className="hidden items-center gap-4 lg:flex">
           <motion.a
-            className="text-sm font-medium text-white/90 transition-opacity duration-200 hover:opacity-75"
+            className="text-sm font-medium text-white transition-opacity duration-200 hover:opacity-75"
             href="#login"
             whileHover={{ y: -1 }}
             transition={{ duration: 0.18 }}
@@ -102,7 +102,7 @@ export function Navbar() {
             <div className="flex flex-col">
               {navLinks.map((link) => (
                 <a
-                  className="rounded-xl px-3 py-3 text-sm font-medium text-white/90 transition-colors duration-200 hover:bg-white/10 hover:text-white"
+                  className="rounded-xl px-3 py-3 text-sm font-medium text-white transition-colors duration-200 hover:bg-white/10"
                   href={link.href}
                   key={link.label}
                   onClick={() => setIsMenuOpen(false)}
@@ -112,7 +112,7 @@ export function Navbar() {
               ))}
               <div className="mt-2 grid grid-cols-2 gap-2 border-t border-white/10 pt-3">
                 <a
-                  className="rounded-xl px-3 py-3 text-center text-sm font-medium text-white/90 transition-colors duration-200 hover:bg-white/10 hover:text-white"
+                  className="rounded-xl px-3 py-3 text-center text-sm font-medium text-white transition-colors duration-200 hover:bg-white/10"
                   href="#login"
                   onClick={() => setIsMenuOpen(false)}
                 >
