@@ -2,6 +2,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import logoFire from "../../assets/logo_fire.png";
+import type { AuthMode } from "../lib/api";
 
 const navLinks = [
   { label: "Explore", href: "#explore" },
@@ -13,10 +14,11 @@ const navLinks = [
 
 type NavbarProps = {
   isNightMode: boolean;
+  onAuthOpen: (mode: AuthMode) => void;
   onThemeToggle: () => void;
 };
 
-export function Navbar({ isNightMode, onThemeToggle }: NavbarProps) {
+export function Navbar({ isNightMode, onAuthOpen, onThemeToggle }: NavbarProps) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -67,6 +69,10 @@ export function Navbar({ isNightMode, onThemeToggle }: NavbarProps) {
           <motion.a
             className="nav-link text-sm font-medium text-white transition-opacity duration-200 hover:opacity-75"
             href="#login"
+            onClick={(event) => {
+              event.preventDefault();
+              onAuthOpen("login");
+            }}
             whileHover={{ y: -1 }}
             transition={{ duration: 0.18 }}
           >
@@ -75,6 +81,10 @@ export function Navbar({ isNightMode, onThemeToggle }: NavbarProps) {
           <motion.a
             className="nav-cta rounded-xl bg-black px-5 py-3 text-sm font-semibold text-white shadow-[0_16px_35px_rgba(0,0,0,0.22)] transition-shadow duration-200 hover:shadow-[0_18px_42px_rgba(0,0,0,0.28)]"
             href="#get-started"
+            onClick={(event) => {
+              event.preventDefault();
+              onAuthOpen("signup");
+            }}
             whileHover={{ scale: 1.04, y: -1 }}
             whileTap={{ scale: 0.98 }}
             transition={{ duration: 0.18 }}
@@ -139,14 +149,22 @@ export function Navbar({ isNightMode, onThemeToggle }: NavbarProps) {
                 <a
                   className="nav-link rounded-xl px-3 py-3 text-center text-sm font-medium text-white transition-colors duration-200 hover:bg-white/10"
                   href="#login"
-                  onClick={() => setIsMenuOpen(false)}
+                  onClick={(event) => {
+                    event.preventDefault();
+                    setIsMenuOpen(false);
+                    onAuthOpen("login");
+                  }}
                 >
                   Log In
                 </a>
                 <a
                   className="nav-cta rounded-xl bg-black px-3 py-3 text-center text-sm font-semibold text-white"
                   href="#get-started"
-                  onClick={() => setIsMenuOpen(false)}
+                  onClick={(event) => {
+                    event.preventDefault();
+                    setIsMenuOpen(false);
+                    onAuthOpen("signup");
+                  }}
                 >
                   Get Started
                 </a>

@@ -1,7 +1,9 @@
 import { useMemo, useState, type CSSProperties } from "react";
+import { AuthPage } from "./components/AuthPage";
 import { HeroContent } from "./components/HeroContent";
 import { HeroCards } from "./components/HeroCards";
 import { Navbar } from "./components/Navbar";
+import type { AuthMode } from "./lib/api";
 
 type Star = {
   id: number;
@@ -55,10 +57,19 @@ function StarField() {
 
 export function App() {
   const [isNightMode, setIsNightMode] = useState(false);
+  const [authMode, setAuthMode] = useState<AuthMode | null>(null);
+
+  if (authMode) {
+    return <AuthPage initialMode={authMode} onBack={() => setAuthMode(null)} />;
+  }
 
   return (
     <main className={`landing-page ${isNightMode ? "night-mode" : "day-mode"}`}>
-      <Navbar isNightMode={isNightMode} onThemeToggle={() => setIsNightMode((current) => !current)} />
+      <Navbar
+        isNightMode={isNightMode}
+        onAuthOpen={setAuthMode}
+        onThemeToggle={() => setIsNightMode((current) => !current)}
+      />
 
       <section className="hero-section">
         <StarField />
