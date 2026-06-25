@@ -76,12 +76,11 @@ function PortfolioCard() {
       duration={6}
       style={
         {
-          "--x": "-500px",
-          "--y": "86px",
+          "--y": "24px",
           "--z": "82px",
-          "--rz": "-8deg",
-          "--ry": "18deg",
-          "--card-scale": 0.85,
+          "--rz": "-3deg",
+          "--ry": "2deg",
+          "--card-scale": 1,
           "--card-z": 3,
         } as CSSProperties
       }
@@ -112,12 +111,11 @@ function ResumeCard() {
       duration={7}
       style={
         {
-          "--x": "-315px",
-          "--y": "42px",
+          "--y": "8px",
           "--z": "88px",
-          "--rz": "-3deg",
-          "--ry": "8deg",
-          "--card-scale": 0.95,
+          "--rz": "2deg",
+          "--ry": "-2deg",
+          "--card-scale": 1,
           "--card-z": 6,
         } as CSSProperties
       }
@@ -148,16 +146,15 @@ function ProfileCard() {
       reflection="strong"
       style={
         {
-          "--x": "0px",
-          "--y": "-4px",
+          "--y": "0px",
           "--z": "120px",
-          "--rz": "0deg",
+          "--rz": "-1deg",
           "--ry": "0deg",
-          "--card-scale": 1.15,
+          "--card-scale": 1,
           "--card-z": 20,
         } as CSSProperties
       }
-      className="h-[260px] w-[196px] rounded-[28px]"
+      className="hero-profile-card h-[245px] w-[185px] rounded-[26px]"
     >
       <div className="h-[60%] overflow-hidden bg-gradient-to-br from-blue-100 to-cyan-100">
         <img className="h-full w-full object-cover object-top" src={profileBoy} alt="Rohit Sharma" />
@@ -189,26 +186,27 @@ function ProjectCard() {
       duration={8}
       style={
         {
-          "--x": "245px",
-          "--y": "52px",
+          "--y": "14px",
           "--z": "90px",
           "--rz": "3deg",
-          "--ry": "0deg",
-          "--card-scale": 0.95,
+          "--ry": "-2deg",
+          "--card-scale": 1,
           "--card-z": 14,
         } as CSSProperties
       }
-      className="h-[245px] w-[185px] rounded-[26px] p-5"
+      className="h-[245px] w-[185px] rounded-[26px] px-5 py-5"
     >
-      <p className="inline-flex rounded-full bg-sky-100 px-3 py-1 text-xs font-medium text-slate-600">
+      <p className="inline-flex rounded-full bg-sky-100 px-3 py-1 text-[11px] font-semibold text-slate-600">
         Featured Project
       </p>
-      <h3 className="mt-5 text-2xl font-extrabold leading-tight text-black">E-Commerce API</h3>
-      <p className="mt-4 text-xs font-medium leading-5 text-slate-600">Built with FastAPI and PostgreSQL</p>
-      <div className="absolute bottom-5 left-5 flex gap-3">
+      <h3 className="mt-5 text-[22px] font-extrabold leading-[1.08] text-black">E-Commerce API</h3>
+      <p className="mt-3 max-w-[132px] text-[11px] font-medium leading-[1.55] text-slate-600">
+        Built with FastAPI and PostgreSQL
+      </p>
+      <div className="absolute bottom-5 left-5 right-5 grid grid-cols-3 gap-2.5">
         {["API", "Py", "SQL"].map((item) => (
           <div
-            className="grid h-11 w-11 place-items-center rounded-2xl bg-white text-xs font-extrabold text-slate-900"
+            className="grid h-10 place-items-center rounded-xl bg-white text-[11px] font-extrabold text-slate-900"
             key={item}
           >
             {item}
@@ -226,12 +224,11 @@ function SkillsCard() {
       duration={6.5}
       style={
         {
-          "--x": "405px",
-          "--y": "92px",
+          "--y": "26px",
           "--z": "86px",
-          "--rz": "4deg",
-          "--ry": "-8deg",
-          "--card-scale": 0.9,
+          "--rz": "-2deg",
+          "--ry": "2deg",
+          "--card-scale": 1,
           "--card-z": 10,
         } as CSSProperties
       }
@@ -268,12 +265,11 @@ function InternshipCard() {
       duration={7.5}
       style={
         {
-          "--x": "515px",
-          "--y": "150px",
+          "--y": "18px",
           "--z": "80px",
-          "--rz": "6deg",
-          "--ry": "-15deg",
-          "--card-scale": 0.85,
+          "--rz": "4deg",
+          "--ry": "-2deg",
+          "--card-scale": 1,
           "--card-z": 5,
         } as CSSProperties
       }
@@ -304,12 +300,11 @@ function AnalyticsCard() {
       duration={9}
       style={
         {
-          "--x": "525px",
-          "--y": "74px",
+          "--y": "30px",
           "--z": "78px",
-          "--rz": "9deg",
-          "--ry": "-20deg",
-          "--card-scale": 0.9,
+          "--rz": "-3deg",
+          "--ry": "2deg",
+          "--card-scale": 1,
           "--card-z": 4,
         } as CSSProperties
       }
