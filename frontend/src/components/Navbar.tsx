@@ -11,7 +11,12 @@ const navLinks = [
   { label: "About", href: "#about" },
 ];
 
-export function Navbar() {
+type NavbarProps = {
+  isNightMode: boolean;
+  onThemeToggle: () => void;
+};
+
+export function Navbar({ isNightMode, onThemeToggle }: NavbarProps) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -33,7 +38,7 @@ export function Navbar() {
     >
       <nav
         aria-label="Main navigation"
-        className={`mx-auto flex h-16 max-w-7xl items-center justify-between rounded-2xl px-4 text-white transition-all duration-300 sm:px-5 lg:px-6 ${
+        className={`nav-shell mx-auto flex h-16 max-w-7xl items-center justify-between rounded-2xl px-4 text-white transition-all duration-300 sm:px-5 lg:px-6 ${
           isScrolled
             ? "border border-white/15 bg-white/10 shadow-[0_18px_55px_rgba(0,38,120,0.18)] backdrop-blur-xl"
             : "border border-transparent bg-transparent"
@@ -41,13 +46,13 @@ export function Navbar() {
       >
         <a className="flex items-center gap-2.5" href="/" aria-label="Hodos home">
           <img className="h-10 w-10 object-contain" src={logoFire} alt="" />
-          <span className="text-xl font-bold tracking-normal text-white">Hodos</span>
+          <span className="nav-brand text-xl font-bold tracking-normal text-white">Hodos</span>
         </a>
 
         <div className="hidden items-center gap-9 lg:flex">
           {navLinks.map((link) => (
             <motion.a
-              className="text-sm font-medium text-white transition-opacity duration-200 hover:opacity-75"
+              className="nav-link text-sm font-medium text-white transition-opacity duration-200 hover:opacity-75"
               href={link.href}
               key={link.label}
               whileHover={{ y: -1 }}
@@ -60,7 +65,7 @@ export function Navbar() {
 
         <div className="hidden items-center gap-4 lg:flex">
           <motion.a
-            className="text-sm font-medium text-white transition-opacity duration-200 hover:opacity-75"
+            className="nav-link text-sm font-medium text-white transition-opacity duration-200 hover:opacity-75"
             href="#login"
             whileHover={{ y: -1 }}
             transition={{ duration: 0.18 }}
@@ -68,7 +73,7 @@ export function Navbar() {
             Log In
           </motion.a>
           <motion.a
-            className="rounded-xl bg-black px-5 py-3 text-sm font-semibold text-white shadow-[0_16px_35px_rgba(0,0,0,0.22)] transition-shadow duration-200 hover:shadow-[0_18px_42px_rgba(0,0,0,0.28)]"
+            className="nav-cta rounded-xl bg-black px-5 py-3 text-sm font-semibold text-white shadow-[0_16px_35px_rgba(0,0,0,0.22)] transition-shadow duration-200 hover:shadow-[0_18px_42px_rgba(0,0,0,0.28)]"
             href="#get-started"
             whileHover={{ scale: 1.04, y: -1 }}
             whileTap={{ scale: 0.98 }}
@@ -76,12 +81,32 @@ export function Navbar() {
           >
             Get Started
           </motion.a>
+          <motion.button
+            aria-label={`Switch to ${isNightMode ? "day" : "night"} mode`}
+            aria-pressed={isNightMode}
+            className="theme-toggle"
+            onClick={onThemeToggle}
+            type="button"
+            whileHover={{ y: -1 }}
+            whileTap={{ scale: 0.96 }}
+          >
+            <span className="theme-toggle-glow" />
+            <span className="theme-toggle-track">
+              <motion.span
+                animate={{ x: isNightMode ? 28 : 0 }}
+                className="theme-toggle-thumb"
+                transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+              >
+                {isNightMode ? "🌙" : "☀️"}
+              </motion.span>
+            </span>
+          </motion.button>
         </div>
 
         <motion.button
           aria-expanded={isMenuOpen}
           aria-label="Toggle navigation menu"
-          className="inline-flex h-11 w-11 items-center justify-center rounded-xl border border-white/15 bg-white/10 text-white backdrop-blur-md lg:hidden"
+          className="nav-menu-button inline-flex h-11 w-11 items-center justify-center rounded-xl border border-white/15 bg-white/10 text-white backdrop-blur-md lg:hidden"
           onClick={() => setIsMenuOpen((current) => !current)}
           type="button"
           whileTap={{ scale: 0.95 }}
@@ -102,7 +127,7 @@ export function Navbar() {
             <div className="flex flex-col">
               {navLinks.map((link) => (
                 <a
-                  className="rounded-xl px-3 py-3 text-sm font-medium text-white transition-colors duration-200 hover:bg-white/10"
+                  className="nav-link rounded-xl px-3 py-3 text-sm font-medium text-white transition-colors duration-200 hover:bg-white/10"
                   href={link.href}
                   key={link.label}
                   onClick={() => setIsMenuOpen(false)}
@@ -112,20 +137,35 @@ export function Navbar() {
               ))}
               <div className="mt-2 grid grid-cols-2 gap-2 border-t border-white/10 pt-3">
                 <a
-                  className="rounded-xl px-3 py-3 text-center text-sm font-medium text-white transition-colors duration-200 hover:bg-white/10"
+                  className="nav-link rounded-xl px-3 py-3 text-center text-sm font-medium text-white transition-colors duration-200 hover:bg-white/10"
                   href="#login"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   Log In
                 </a>
                 <a
-                  className="rounded-xl bg-black px-3 py-3 text-center text-sm font-semibold text-white"
+                  className="nav-cta rounded-xl bg-black px-3 py-3 text-center text-sm font-semibold text-white"
                   href="#get-started"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   Get Started
                 </a>
               </div>
+              <button
+                aria-label={`Switch to ${isNightMode ? "day" : "night"} mode`}
+                aria-pressed={isNightMode}
+                className="theme-toggle mt-3 self-start"
+                onClick={() => {
+                  onThemeToggle();
+                  setIsMenuOpen(false);
+                }}
+                type="button"
+              >
+                <span className="theme-toggle-glow" />
+                <span className="theme-toggle-track">
+                  <span className="theme-toggle-thumb">{isNightMode ? "🌙" : "☀️"}</span>
+                </span>
+              </button>
             </div>
           </motion.div>
         )}
