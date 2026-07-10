@@ -5,7 +5,7 @@ import logoFire from "../../assets/logo_fire.png";
 import type { AuthMode } from "../lib/api";
 
 const navLinks = [
-  { label: "Explore", href: "#explore" },
+  { label: "Explore", href: "/gallery" },
   { label: "Search", href: "#search" },
   { label: "How it Works", href: "#how-it-works" },
   { label: "For Students", href: "#students" },
