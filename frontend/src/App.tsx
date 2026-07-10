@@ -1,5 +1,6 @@
 import { useMemo, useState, type CSSProperties } from "react";
 import { AuthPage } from "./components/AuthPage";
+import { GalleryPage } from "./components/gallery/GalleryPage";
 import { HeroContent } from "./components/HeroContent";
 import { HeroCards } from "./components/HeroCards";
 import { Navbar } from "./components/Navbar";
@@ -58,9 +59,14 @@ function StarField() {
 export function App() {
   const [isNightMode, setIsNightMode] = useState(false);
   const [authMode, setAuthMode] = useState<AuthMode | null>(null);
+  const isGalleryRoute = window.location.pathname === "/gallery";
 
   if (authMode) {
     return <AuthPage initialMode={authMode} onBack={() => setAuthMode(null)} />;
+  }
+
+  if (isGalleryRoute) {
+    return <GalleryPage />;
   }
 
   return (
