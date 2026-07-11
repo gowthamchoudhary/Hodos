@@ -41,7 +41,7 @@ export function TopSearchBar({
           type="search"
           value={search}
         />
-        <kbd>⌘K</kbd>
+        <kbd>Ctrl K</kbd>
       </label>
 
       <div className="gallery-topbar-actions">
