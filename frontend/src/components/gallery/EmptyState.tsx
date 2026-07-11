@@ -1,5 +1,6 @@
-import { FilePlus2, Sparkles } from "lucide-react";
+import { FilePlus2, Sparkles, Upload } from "lucide-react";
 import { motion } from "framer-motion";
+import { PremiumButton } from "../PremiumButton";
 
 export function EmptyState() {
   return (
@@ -19,9 +20,15 @@ export function EmptyState() {
       </div>
       <h2>No portfolios yet</h2>
       <p>No portfolios have been shared yet.</p>
-      <motion.a className="gallery-primary-button" href="/upload" whileHover={{ y: -2 }} whileTap={{ scale: 0.98 }}>
+      <PremiumButton
+        as="a"
+        className="gallery-primary-button gallery-state-action upload-portfolio-button"
+        href="/upload"
+        icon={<Upload size={18} strokeWidth={2.45} />}
+        variant="blue"
+      >
         Upload Portfolio
-      </motion.a>
+      </PremiumButton>
     </motion.div>
   );
 }

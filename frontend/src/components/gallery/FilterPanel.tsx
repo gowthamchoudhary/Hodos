@@ -1,6 +1,7 @@
 import { Search, SlidersHorizontal, X } from "lucide-react";
 import { motion } from "framer-motion";
 import type { SearchFilters } from "../../lib/api";
+import { PremiumButton } from "../PremiumButton";
 
 export type FilterOptions = {
   roles: string[];
@@ -119,12 +120,24 @@ function PanelContent({
       </div>
 
       <div className="filter-actions">
-        <motion.button className="gallery-secondary-button" onClick={onClear} type="button" whileHover={{ y: -2 }}>
+        <PremiumButton
+          className="gallery-secondary-button"
+          icon={false}
+          onClick={onClear}
+          type="button"
+          variant="secondary"
+        >
           Clear Filters
-        </motion.button>
-        <motion.button className="gallery-primary-button" onClick={onApply} type="button" whileHover={{ y: -2 }}>
+        </PremiumButton>
+        <PremiumButton
+          className="gallery-primary-button"
+          icon={false}
+          onClick={onApply}
+          type="button"
+          variant="blue"
+        >
           Apply Filters
-        </motion.button>
+        </PremiumButton>
       </div>
     </>
   );

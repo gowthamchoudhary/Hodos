@@ -1,5 +1,6 @@
-import { AlertCircle } from "lucide-react";
+import { AlertCircle, RotateCw } from "lucide-react";
 import { motion } from "framer-motion";
+import { PremiumButton } from "../PremiumButton";
 
 type ErrorStateProps = {
   message: string;
@@ -19,9 +20,15 @@ export function ErrorState({ message, onRetry }: ErrorStateProps) {
       </div>
       <h2>Unable to load gallery</h2>
       <p>{message}</p>
-      <motion.button className="gallery-primary-button" onClick={onRetry} type="button" whileHover={{ y: -2 }}>
+      <PremiumButton
+        className="gallery-primary-button gallery-state-action"
+        icon={<RotateCw size={18} strokeWidth={2.4} />}
+        onClick={onRetry}
+        type="button"
+        variant="blue"
+      >
         Try again
-      </motion.button>
+      </PremiumButton>
     </motion.div>
   );
 }
