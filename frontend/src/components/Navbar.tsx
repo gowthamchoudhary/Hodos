@@ -3,6 +3,7 @@ import { Menu, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import logoFire from "../../assets/logo_fire.png";
 import type { AuthMode } from "../lib/api";
+import { PremiumButton } from "./PremiumButton";
 
 const navLinks = [
   { label: "Explore", href: "/gallery" },
@@ -78,19 +79,19 @@ export function Navbar({ isNightMode, onAuthOpen, onThemeToggle }: NavbarProps) 
           >
             Log In
           </motion.a>
-          <motion.a
-            className="nav-cta rounded-xl bg-black px-5 py-3 text-sm font-semibold text-white shadow-[0_16px_35px_rgba(0,0,0,0.22)] transition-shadow duration-200 hover:shadow-[0_18px_42px_rgba(0,0,0,0.28)]"
+          <PremiumButton
+            as="a"
+            className="nav-cta"
             href="#get-started"
             onClick={(event) => {
               event.preventDefault();
               onAuthOpen("signup");
             }}
-            whileHover={{ scale: 1.04, y: -1 }}
-            whileTap={{ scale: 0.98 }}
-            transition={{ duration: 0.18 }}
+            size="sm"
+            variant="primary"
           >
             Get Started
-          </motion.a>
+          </PremiumButton>
           <motion.button
             aria-label={`Switch to ${isNightMode ? "day" : "night"} mode`}
             aria-pressed={isNightMode}
@@ -157,17 +158,20 @@ export function Navbar({ isNightMode, onAuthOpen, onThemeToggle }: NavbarProps) 
                 >
                   Log In
                 </a>
-                <a
-                  className="nav-cta rounded-xl bg-black px-3 py-3 text-center text-sm font-semibold text-white"
+                <PremiumButton
+                  as="a"
+                  className="nav-cta"
                   href="#get-started"
                   onClick={(event) => {
                     event.preventDefault();
                     setIsMenuOpen(false);
                     onAuthOpen("signup");
                   }}
+                  size="sm"
+                  variant="primary"
                 >
                   Get Started
-                </a>
+                </PremiumButton>
               </div>
               <button
                 aria-label={`Switch to ${isNightMode ? "day" : "night"} mode`}

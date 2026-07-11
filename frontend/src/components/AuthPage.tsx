@@ -5,6 +5,7 @@ import { FaGithub } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 import logoFire from "../../assets/logo_fire.png";
 import { type AuthMode, type OAuthProvider, startOAuth, submitAuth } from "../lib/api";
+import { PremiumButton } from "./PremiumButton";
 
 type AuthPageProps = {
   initialMode: AuthMode;
@@ -74,10 +75,9 @@ export function AuthPage({ initialMode, onBack }: AuthPageProps) {
 
   return (
     <main className="auth-page">
-      <button className="auth-back-button" onClick={onBack} type="button">
-        <ArrowLeft size={18} />
+      <PremiumButton className="auth-back-button" icon={<ArrowLeft size={18} />} onClick={onBack} size="sm" variant="secondary">
         Back
-      </button>
+      </PremiumButton>
 
       <motion.section
         animate={{ opacity: 1 }}
@@ -178,26 +178,26 @@ export function AuthPage({ initialMode, onBack }: AuthPageProps) {
               </div>
 
               <div className="auth-provider-grid">
-                <motion.button
+                <PremiumButton
+                  className="auth-provider-button"
                   disabled={isSubmitting}
+                  icon={<FcGoogle size={21} />}
                   onClick={() => handleProvider("google")}
                   type="button"
-                  whileHover={{ y: -2 }}
-                  whileTap={{ scale: 0.98 }}
+                  variant="secondary"
                 >
-                  <FcGoogle size={21} />
                   Google
-                </motion.button>
-                <motion.button
+                </PremiumButton>
+                <PremiumButton
+                  className="auth-provider-button"
                   disabled={isSubmitting}
+                  icon={<FaGithub size={19} />}
                   onClick={() => handleProvider("github")}
                   type="button"
-                  whileHover={{ y: -2 }}
-                  whileTap={{ scale: 0.98 }}
+                  variant="secondary"
                 >
-                  <FaGithub size={19} />
                   GitHub
-                </motion.button>
+                </PremiumButton>
               </div>
 
               <div className="auth-divider">
@@ -238,15 +238,15 @@ export function AuthPage({ initialMode, onBack }: AuthPageProps) {
                   </div>
                 </label>
 
-                <motion.button
+                <PremiumButton
                   className="auth-submit"
                   disabled={isSubmitting}
+                  size="lg"
                   type="submit"
-                  whileHover={{ y: -2 }}
-                  whileTap={{ scale: 0.98 }}
+                  variant="primary"
                 >
                   {isSubmitting ? "Connecting..." : isLogin ? "Log in" : "Create account"}
-                </motion.button>
+                </PremiumButton>
               </form>
 
               {status && <p className="auth-status">{status}</p>}
