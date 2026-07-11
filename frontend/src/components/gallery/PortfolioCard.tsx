@@ -1,6 +1,7 @@
-import { ArrowUpRight, BriefcaseBusiness, FileText, Github, Linkedin } from "lucide-react";
+import { BriefcaseBusiness, FileText, Github, Linkedin } from "lucide-react";
 import { motion } from "framer-motion";
 import type { PortfolioProfile } from "../../lib/api";
+import { PremiumButton } from "../PremiumButton";
 import type { GalleryView } from "./GridToggle";
 
 type PortfolioCardProps = {
@@ -52,10 +53,9 @@ export function PortfolioCard({ profile, view }: PortfolioCardProps) {
 
       <div className="portfolio-card-actions">
         {profile.portfolio_url && (
-          <a href={profile.portfolio_url} rel="noreferrer" target="_blank">
+          <PremiumButton as="a" href={profile.portfolio_url} rel="noreferrer" target="_blank" variant="blue">
             Portfolio
-            <ArrowUpRight size={16} />
-          </a>
+          </PremiumButton>
         )}
         {profile.resume_url && (
           <a href={profile.resume_url} rel="noreferrer" target="_blank" aria-label={`${profile.name} resume`}>
