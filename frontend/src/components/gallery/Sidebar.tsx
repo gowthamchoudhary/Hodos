@@ -172,29 +172,31 @@ function SidebarContent({ onClose }: { onClose: () => void }) {
         </button>
       </div>
 
-      <nav className="grid gap-1.5" aria-label="Gallery navigation">
-        {primaryItems.map((item) => (
-          <NavItem item={item} key={item.label} />
-        ))}
-      </nav>
-
-      <div className="h-px bg-gradient-to-r from-transparent via-[var(--color-border-primary-default,#E5E7EB)] to-transparent" />
-
-      <div>
-        <p
-          className="mb-2.5 ml-3 text-[11px] font-extrabold uppercase tracking-[0.08em]"
-          style={{ color: token.textSubtle }}
-        >
-          Filters
-        </p>
-        <nav className="grid gap-1.5" aria-label="Filter shortcuts">
-          {filterItems.map((item) => (
+      <div className="sidebar-scroll-area min-h-0 flex-1 overflow-y-auto pr-1">
+        <nav className="grid gap-1.5" aria-label="Gallery navigation">
+          {primaryItems.map((item) => (
             <NavItem item={item} key={item.label} />
           ))}
         </nav>
+
+        <div className="my-4 h-px bg-gradient-to-r from-transparent via-[var(--color-border-primary-default,#E5E7EB)] to-transparent" />
+
+        <div>
+          <p
+            className="mb-2.5 ml-3 text-[11px] font-extrabold uppercase tracking-[0.08em]"
+            style={{ color: token.textSubtle }}
+          >
+            Filters
+          </p>
+          <nav className="grid gap-1.5" aria-label="Filter shortcuts">
+            {filterItems.map((item) => (
+              <NavItem item={item} key={item.label} />
+            ))}
+          </nav>
+        </div>
       </div>
 
-      <div className="mt-auto grid gap-3">
+      <div className="sidebar-action-area grid shrink-0 gap-3">
         <motion.a
           className="flex min-h-11 items-center justify-center gap-2.5 rounded-[14px] px-4 text-[14px] font-extrabold text-white ring-1 ring-blue-700/35 transition-all duration-200 ease-out hover:-translate-y-0.5 hover:brightness-105"
           href="/upload"
@@ -263,7 +265,7 @@ function SidebarContent({ onClose }: { onClose: () => void }) {
       </div>
 
       <div
-        className="flex items-center justify-between rounded-[18px] border p-1"
+        className="sidebar-utility-bar flex shrink-0 items-center justify-between rounded-[18px] border p-1"
         aria-label="Utilities"
         style={{
           background:

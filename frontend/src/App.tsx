@@ -4,6 +4,7 @@ import { GalleryPage } from "./components/gallery/GalleryPage";
 import { HeroContent } from "./components/HeroContent";
 import { HeroCards } from "./components/HeroCards";
 import { Navbar } from "./components/Navbar";
+import { UploadPortfolioPage } from "./components/UploadPortfolioPage";
 import type { AuthMode } from "./lib/api";
 
 type Star = {
@@ -60,6 +61,7 @@ export function App() {
   const [isNightMode, setIsNightMode] = useState(false);
   const [authMode, setAuthMode] = useState<AuthMode | null>(null);
   const isGalleryRoute = window.location.pathname === "/gallery";
+  const isUploadRoute = window.location.pathname === "/upload";
 
   if (authMode) {
     return <AuthPage initialMode={authMode} onBack={() => setAuthMode(null)} />;
@@ -67,6 +69,10 @@ export function App() {
 
   if (isGalleryRoute) {
     return <GalleryPage />;
+  }
+
+  if (isUploadRoute) {
+    return <UploadPortfolioPage />;
   }
 
   return (
