@@ -4,7 +4,7 @@ import { getGalleryProfiles, type PortfolioProfile, type SearchFilters } from ".
 import { ErrorState } from "./ErrorState";
 import { FilterPanel, type FilterOptions } from "./FilterPanel";
 import type { GalleryView } from "./GridToggle";
-import { LoadingSkeleton } from "./LoadingSkeleton";
+import { PortfolioCardSkeleton } from "./PortfolioCardSkeleton";
 import { PortfolioGrid } from "./PortfolioGrid";
 import { Sidebar } from "./Sidebar";
 import type { SortMode } from "./SortDropdown";
@@ -164,7 +164,7 @@ export function GalleryPage() {
         </div>
 
         {isLoading ? (
-          <LoadingSkeleton />
+          <PortfolioCardSkeleton />
         ) : error ? (
           <ErrorState message={error} onRetry={() => loadProfiles(activeFilters)} />
         ) : (
