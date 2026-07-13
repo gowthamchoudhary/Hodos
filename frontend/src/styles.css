@@ -71,6 +71,54 @@ a {
   text-decoration: none;
 }
 
+.auth-callback-page {
+  align-items: center;
+  background:
+    radial-gradient(circle at 25% 18%, rgb(249 115 22 / 0.18), transparent 28%),
+    radial-gradient(circle at 78% 22%, rgb(37 99 235 / 0.14), transparent 30%),
+    linear-gradient(135deg, #f8fafc 0%, #eef2ff 48%, #fff7ed 100%);
+  color: #0f172a;
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 24px;
+}
+
+.auth-callback-panel {
+  align-items: center;
+  background: rgb(255 255 255 / 0.84);
+  border: 1px solid rgb(148 163 184 / 0.24);
+  border-radius: 8px;
+  box-shadow: 0 24px 70px rgb(15 23 42 / 0.14);
+  display: flex;
+  gap: 14px;
+  max-width: 420px;
+  padding: 18px 20px;
+}
+
+.auth-callback-panel p {
+  font-size: 0.95rem;
+  font-weight: 700;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.auth-callback-loader {
+  animation: auth-callback-spin 850ms linear infinite;
+  border: 3px solid rgb(37 99 235 / 0.16);
+  border-radius: 999px;
+  border-top-color: #2563eb;
+  flex: 0 0 auto;
+  height: 24px;
+  width: 24px;
+}
+
+@keyframes auth-callback-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 .landing-page {
   min-height: 100vh;
   overflow-x: hidden;

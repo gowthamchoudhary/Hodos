@@ -218,7 +218,7 @@ export async function getGalleryProfiles(filters: SearchFilters = {}): Promise<{
 }
 
 export async function startOAuth(provider: OAuthProvider): Promise<OAuthResponse> {
-  const redirectTo = `${window.location.origin}/`;
+  const redirectTo = `${window.location.origin}/auth/callback`;
   const response = await fetch(
     `${API_BASE_URL}/auth/oauth/${provider}?redirect_to=${encodeURIComponent(redirectTo)}`,
   );
