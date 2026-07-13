@@ -39,6 +39,18 @@ export type ProfileResponse = {
 
 export type PortfolioProfile = ProfileResponse & {
   skills: SkillResponse[];
+  /** Optional gallery enrichment returned by newer backend versions. */
+  headline?: string | null;
+  badges?: string[] | null;
+  status_badges?: string[] | null;
+  location?: string | null;
+  current_company?: string | null;
+  experience_level?: string | null;
+  project_count?: number | null;
+  projects_count?: number | null;
+  skills_count?: number | null;
+  experience_years?: number | string | null;
+  years_of_experience?: number | string | null;
 };
 
 export type SearchFilters = {
