@@ -1,4 +1,5 @@
 import { useMemo, useState, type CSSProperties } from "react";
+import { AuthCallbackPage } from "./components/AuthCallbackPage";
 import { AuthPage } from "./components/AuthPage";
 import { GalleryPage } from "./components/gallery/GalleryPage";
 import { HeroContent } from "./components/HeroContent";
@@ -60,8 +61,13 @@ function StarField() {
 export function App() {
   const [isNightMode, setIsNightMode] = useState(false);
   const [authMode, setAuthMode] = useState<AuthMode | null>(null);
+  const isAuthCallbackRoute = window.location.pathname === "/auth/callback";
   const isGalleryRoute = window.location.pathname === "/gallery";
   const isUploadRoute = window.location.pathname === "/upload";
+
+  if (isAuthCallbackRoute) {
+    return <AuthCallbackPage />;
+  }
 
   if (authMode) {
     return <AuthPage initialMode={authMode} onBack={() => setAuthMode(null)} />;
