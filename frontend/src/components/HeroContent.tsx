@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { PremiumButton } from "./PremiumButton";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 22 },
@@ -51,26 +52,25 @@ export function HeroContent() {
         variants={fadeUp}
         transition={{ delay: 0.36, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
       >
-        <motion.a
-          className="hero-primary-cta inline-flex min-h-14 items-center justify-center rounded-xl bg-black px-7 text-base font-semibold text-white shadow-[0_18px_40px_rgba(0,0,0,0.24)] transition-shadow duration-200 hover:shadow-[0_22px_48px_rgba(0,0,0,0.3)]"
+        <PremiumButton
+          as="a"
+          className="hero-primary-cta"
           href="/gallery"
-          style={{ color: "#ffffff" }}
-          whileHover={{ scale: 1.04, y: -2 }}
-          whileTap={{ scale: 0.98 }}
-          transition={{ duration: 0.18 }}
+          size="lg"
+          variant="primary"
         >
-          <span className="text-white">Explore Journeys {"\u2192"}</span>
-        </motion.a>
+          Explore Journeys
+        </PremiumButton>
 
-        <motion.a
-          className="hero-secondary-cta inline-flex min-h-14 items-center justify-center rounded-xl bg-white px-7 text-base font-semibold text-[#111827] shadow-[0_18px_40px_rgba(255,255,255,0.18)] transition-colors duration-200 hover:bg-white/90"
+        <PremiumButton
+          as="a"
+          className="hero-secondary-cta"
           href="/upload"
-          whileHover={{ scale: 1.03, y: -2 }}
-          whileTap={{ scale: 0.98 }}
-          transition={{ duration: 0.18 }}
+          size="lg"
+          variant="secondary"
         >
           Share Your Journey
-        </motion.a>
+        </PremiumButton>
       </motion.div>
     </div>
   );

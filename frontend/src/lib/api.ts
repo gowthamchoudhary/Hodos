@@ -39,6 +39,18 @@ export type ProfileResponse = {
 
 export type PortfolioProfile = ProfileResponse & {
   skills: SkillResponse[];
+  /** Optional gallery enrichment returned by newer backend versions. */
+  headline?: string | null;
+  badges?: string[] | null;
+  status_badges?: string[] | null;
+  location?: string | null;
+  current_company?: string | null;
+  experience_level?: string | null;
+  project_count?: number | null;
+  projects_count?: number | null;
+  skills_count?: number | null;
+  experience_years?: number | string | null;
+  years_of_experience?: number | string | null;
 };
 
 export type SearchFilters = {
@@ -53,6 +65,29 @@ export type SearchResponse = {
   total: number;
   limit: number;
   offset: number;
+};
+
+export type GalleryResponse = {
+  items: PortfolioProfile[];
+  total: number;
+  limit: number;
+  offset: number;
+};
+
+export type ProfilePayload = {
+  name: string;
+  role: string;
+  experience_type: string;
+  company?: string | null;
+  portfolio_url?: string | null;
+  github_url?: string | null;
+  linkedin_url?: string | null;
+};
+
+export type ResumeUploadResponse = {
+  profile_id: number;
+  resume_url: string;
+  message: string;
 };
 
 function getAuthHeaders() {
@@ -114,32 +149,72 @@ export async function searchProfiles(filters: SearchFilters = {}): Promise<Searc
   return requestJson<SearchResponse>(`/search?${params.toString()}`);
 }
 
+export async function createProfile(payload: ProfilePayload): Promise<ProfileResponse> {
+  const response = await fetch(`${API_BASE_URL}/profiles`, {
+    body: JSON.stringify(payload),
+    headers: {
+      "Content-Type": "application/json",
+      ...getAuthHeaders(),
+    },
+    method: "POST",
+  });
+
+  const data = await response.json().catch(() => ({}));
+
+  if (!response.ok) {
+    throw new Error(data.detail || "Could not upload your portfolio.");
+  }
+
+  return data as ProfileResponse;
+}
+
 export async function getProfileSkills(profileId: number): Promise<SkillResponse[]> {
   return requestJson<SkillResponse[]>(`/profiles/${profileId}/skills`);
+}
+
+export async function uploadProfileResume(profileId: number, file: File): Promise<ResumeUploadResponse> {
+  const formData = new FormData();
+  formData.set("profile_id", String(profileId));
+  formData.set("file", file);
+
+  const response = await fetch(`${API_BASE_URL}/upload/resume`, {
+    body: formData,
+    headers: getAuthHeaders(),
+    method: "POST",
+  });
+
+  const data = await response.json().catch(() => ({}));
+
+  if (!response.ok) {
+    throw new Error(data.detail || "Profile saved, but the resume upload failed.");
+  }
+
+  return data as ResumeUploadResponse;
 }
 
 export async function getGalleryProfiles(filters: SearchFilters = {}): Promise<{
   items: PortfolioProfile[];
   total: number;
 }> {
-  const result = await searchProfiles(filters);
-  const skillsByProfile = await Promise.all(
-    result.items.map(async (profile) => {
-      try {
-        return await getProfileSkills(profile.id);
-      } catch {
-        return [];
-      }
-    }),
-  );
+  const params = new URLSearchParams({
+    limit: "100",
+    offset: "0",
+  });
 
-  return {
-    items: result.items.map((profile, index) => ({
-      ...profile,
-      skills: skillsByProfile[index],
-    })),
-    total: result.total,
-  };
+  Object.entries(filters).forEach(([key, value]) => {
+    if (value) {
+      params.set(key, value);
+    }
+  });
+
+  const response = await fetch(`${API_BASE_URL}/gallery?${params.toString()}`);
+  const data = await response.json().catch(() => ({}));
+
+  if (!response.ok) {
+    throw new Error(data.detail || "Could not load gallery data.");
+  }
+
+  return data as GalleryResponse;
 }
 
 export async function startOAuth(provider: OAuthProvider): Promise<OAuthResponse> {
