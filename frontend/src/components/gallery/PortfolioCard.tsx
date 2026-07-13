@@ -96,6 +96,15 @@ export function PortfolioCard({ profile, view }: PortfolioCardProps) {
   ]);
 
   const headline = cleanText(profile.headline);
+  const portfolioUrl = cleanText(profile.portfolio_url);
+  const resumeUrl = cleanText(profile.resume_url);
+  const journeyUrl = portfolioUrl ?? resumeUrl ?? "/upload";
+  const opensExternalJourney = Boolean(portfolioUrl ?? resumeUrl);
+  const journeyLabel = portfolioUrl
+    ? `Open ${profile.name}'s portfolio`
+    : resumeUrl
+      ? `Open ${profile.name}'s resume`
+      : "Upload a portfolio";
 
   return (
     <motion.article
@@ -104,61 +113,65 @@ export function PortfolioCard({ profile, view }: PortfolioCardProps) {
       transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
       whileHover={{ scale: 1.015, y: -4 }}
     >
-      <a aria-label={`View ${profile.name}'s journey`} className="portfolio-card-link" href={`/profile/${profile.id}`}>
-        <div className="portfolio-card-content">
-          <div className="portfolio-card-heading">
-            <div className="portfolio-card-identity">
-              <h2>{profile.name}</h2>
-              <p className="portfolio-card-role">{profile.role}</p>
-            </div>
-
-            {visibleBadges.length > 0 && (
-              <div className="portfolio-status-badges" aria-label="Portfolio status">
-                {visibleBadges.map((badge) => (
-                  <span key={badge}>{badge}</span>
-                ))}
-                {hiddenBadgeCount > 0 && <span aria-label={`${hiddenBadgeCount} more statuses`}>+{hiddenBadgeCount}</span>}
-              </div>
-            )}
+      <div className="portfolio-card-content">
+        <div className="portfolio-card-heading">
+          <div className="portfolio-card-identity">
+            <h2>{profile.name}</h2>
+            <p className="portfolio-card-role">{profile.role}</p>
           </div>
 
-          {headline && <p className="portfolio-card-headline">{headline}</p>}
-
-          {visibleSkills.length > 0 && (
-            <div className="portfolio-card-skills" aria-label="Skills">
-              {visibleSkills.map((skill) => (
-                <span key={skill.id}>{skill.name}</span>
+          {visibleBadges.length > 0 && (
+            <div className="portfolio-status-badges" aria-label="Portfolio status">
+              {visibleBadges.map((badge) => (
+                <span key={badge}>{badge}</span>
               ))}
-              {hiddenSkillCount > 0 && <span aria-label={`${hiddenSkillCount} more skills`}>+{hiddenSkillCount}</span>}
+              {hiddenBadgeCount > 0 && <span aria-label={`${hiddenBadgeCount} more statuses`}>+{hiddenBadgeCount}</span>}
             </div>
           )}
+        </div>
 
-          {metadata.length > 0 && (
-            <div className="portfolio-card-metadata" aria-label="Portfolio details">
-              {metadata.map(({ icon: Icon, label, type }) => (
-                <span key={type} title={label}>
-                  <Icon aria-hidden="true" size={13} strokeWidth={2} />
-                  <span>{label}</span>
-                </span>
-              ))}
-            </div>
-          )}
+        {headline && <p className="portfolio-card-headline">{headline}</p>}
 
-          <div className="portfolio-card-stats" aria-label="Portfolio statistics">
-            {stats.map((stat) => (
-              <span key={stat.label}>
-                <small>{stat.label}</small>
-                <strong>{stat.value}</strong>
+        {visibleSkills.length > 0 && (
+          <div className="portfolio-card-skills" aria-label="Skills">
+            {visibleSkills.map((skill) => (
+              <span key={skill.id}>{skill.name}</span>
+            ))}
+            {hiddenSkillCount > 0 && <span aria-label={`${hiddenSkillCount} more skills`}>+{hiddenSkillCount}</span>}
+          </div>
+        )}
+
+        {metadata.length > 0 && (
+          <div className="portfolio-card-metadata" aria-label="Portfolio details">
+            {metadata.map(({ icon: Icon, label, type }) => (
+              <span key={type} title={label}>
+                <Icon aria-hidden="true" size={13} strokeWidth={2} />
+                <span>{label}</span>
               </span>
             ))}
           </div>
+        )}
 
-          <span className="portfolio-journey-button">
-            View Journey
-            <ArrowRight aria-hidden="true" size={16} strokeWidth={2.3} />
-          </span>
+        <div className="portfolio-card-stats" aria-label="Portfolio statistics">
+          {stats.map((stat) => (
+            <span key={stat.label}>
+              <small>{stat.label}</small>
+              <strong>{stat.value}</strong>
+            </span>
+          ))}
         </div>
-      </a>
+
+        <a
+          aria-label={journeyLabel}
+          className="portfolio-journey-button"
+          href={journeyUrl}
+          rel={opensExternalJourney ? "noreferrer" : undefined}
+          target={opensExternalJourney ? "_blank" : undefined}
+        >
+          View Journey
+          <ArrowRight aria-hidden="true" size={16} strokeWidth={2.3} />
+        </a>
+      </div>
     </motion.article>
   );
 }

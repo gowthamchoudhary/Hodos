@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from app.api.auth import router as auth_router
+from app.api.gallery import router as gallery_router
 from app.api.health import router as health_router
 from app.api.profile import router as profile_router
 from app.api.search import router as search_router
@@ -17,7 +18,9 @@ app.add_middleware(
         "http://localhost:5174",
         "http://127.0.0.1:5173",
         "http://127.0.0.1:5174",
+        "https://hodos-swart.vercel.app",
     ],
+    allow_origin_regex=r"http://(localhost|127\.0\.0\.1):517\d",
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -28,6 +31,7 @@ app.include_router(auth_router)
 app.include_router(profile_router)
 app.include_router(skills_router)
 app.include_router(search_router)
+app.include_router(gallery_router)
 app.include_router(upload_router)
 
 

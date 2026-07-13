@@ -4200,7 +4200,9 @@ a {
 }
 
 .portfolio-discovery-card {
+  display: flex;
   height: auto;
+  padding: 14px;
   transform-origin: center;
 }
 
@@ -4216,17 +4218,6 @@ a {
   box-shadow:
     0 0 0 3px rgb(37 99 235 / 0.16),
     0 16px 46px rgba(15, 23, 42, 0.11);
-}
-
-.portfolio-card-link {
-  color: inherit;
-  cursor: pointer;
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  min-height: 218px;
-  padding: 14px;
-  text-decoration: none;
 }
 
 .portfolio-status-badges {
@@ -4257,7 +4248,7 @@ a {
   display: flex;
   flex: 1 1 auto;
   flex-direction: column;
-  min-height: 0;
+  min-height: 190px;
   padding: 0;
 }
 
@@ -4403,6 +4394,7 @@ a {
   justify-content: center;
   margin-top: auto;
   min-height: 34px;
+  text-decoration: none;
   transition:
     background-color 250ms ease,
     box-shadow 250ms ease,
@@ -4415,13 +4407,13 @@ a {
   transition: transform 250ms ease;
 }
 
-.portfolio-card-link:hover .portfolio-journey-button {
+.portfolio-discovery-card:hover .portfolio-journey-button {
   background: var(--gallery-blue-hover, #1d4ed8);
   box-shadow: 0 10px 20px rgb(37 99 235 / 0.22);
   transform: translateY(-1px);
 }
 
-.portfolio-card-link:hover .portfolio-journey-button svg {
+.portfolio-discovery-card:hover .portfolio-journey-button svg {
   transform: translateX(2px);
 }
 

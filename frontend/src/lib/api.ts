@@ -1,5 +1,5 @@
 export const API_BASE_URL =
-  import.meta.env.VITE_API_BASE_URL?.replace(/\/$/, "") || "https://hodos-2v13.onrender.com";
+  import.meta.env.VITE_API_BASE_URL?.replace(/\/$/, "") || "https://hodos-1.onrender.com";
 
 export type AuthMode = "login" | "signup";
 
