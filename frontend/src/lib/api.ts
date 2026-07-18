@@ -231,3 +231,21 @@ export async function startOAuth(provider: OAuthProvider): Promise<OAuthResponse
 
   return data as OAuthResponse;
 }
+
+export async function exchangeOAuthCode(code: string): Promise<AuthResponse> {
+  const response = await fetch(`${API_BASE_URL}/auth/oauth/exchange`, {
+    body: JSON.stringify({ code }),
+    headers: {
+      "Content-Type": "application/json",
+    },
+    method: "POST",
+  });
+
+  const data = await response.json().catch(() => ({}));
+
+  if (!response.ok) {
+    throw new Error(data.detail || "Could not finish OAuth sign-in.");
+  }
+
+  return data as AuthResponse;
+}
