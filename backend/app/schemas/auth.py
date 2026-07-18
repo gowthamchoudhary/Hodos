@@ -18,3 +18,7 @@ class AuthResponse(BaseModel):
 class OAuthResponse(BaseModel):
     provider: str
     url: str
+
+
+class OAuthCodeExchange(BaseModel):
+    code: str = Field(min_length=1)
