@@ -3,7 +3,7 @@ from typing import Any
 from fastapi import APIRouter, HTTPException, status
 
 from app.core.config import supabase
-from app.schemas.auth import AuthCredentials, AuthResponse, OAuthResponse
+from app.schemas.auth import AuthCredentials, AuthResponse, OAuthCodeExchange, OAuthResponse
 
 router = APIRouter(prefix="/auth", tags=["auth"])
 
@@ -62,6 +62,19 @@ def signup(credentials: AuthCredentials) -> AuthResponse:
         email=getattr(user, "email", None),
         message="Account created. Check your email if confirmation is required.",
     )
+
+
+@router.post("/oauth/exchange", response_model=AuthResponse)
+def exchange_oauth_code(payload: OAuthCodeExchange) -> AuthResponse:
+    try:
+        result = supabase.auth.exchange_code_for_session({"auth_code": payload.code})
+    except Exception as exc:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Could not finish OAuth sign-in. Start again from the sign-in page.",
+        ) from exc
+
+    return _read_auth_result(result)
 
 
 @router.get("/oauth/{provider}", response_model=OAuthResponse)
